@@ -1,5 +1,4 @@
 import pkgutil
-import sys
 
 # deprecated in python >=3.12
 from typing import TypeVar
