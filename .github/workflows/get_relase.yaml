@@ -1,4 +1,4 @@
-name: docs
+name: get_release
 
 on:
   workflow_dispatch:
