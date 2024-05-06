@@ -26,7 +26,7 @@ def is_installed(package_name: str) -> bool:
 
 
 def dummy_func(x: T, *args, **kwargs) -> T:
-    """dummy function
+    """dummy function v0.0.10
 
     Parameters
     ----------
