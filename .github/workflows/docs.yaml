@@ -24,7 +24,7 @@ jobs:
           pip install -e .[docs]
       - name: Add path
         run: |
-          echo "$(pwd)" >> $GITHUB_PATH && ls
+          echo "$(pwd)/src" >> $GITHUB_PATH && ls
       - name: Sphinx build
         run: |
           sphinx-multiversion ./docs_src ./docs
