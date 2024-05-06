@@ -21,19 +21,22 @@ jobs:
       - uses: actions/setup-python@v5
       - name: Install dependencies
         run: |
-          python3 -m pip install .[docs]
-      - name: check package list
-        run: |
-          which pip && pip list
-      - name: check import
-        run: |
-          python3 -c "import template; print(template.__version__)"
+          pip install .[docs]
       - name: Sphinx build
         run: |
-          python3 -m sphinx_multiversion ./docs_src ./docs
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          force_orphan: true
+          sphinx-multiversion ./docs_src ./docs
+      - name: Commit docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs
+          git commit -m "build docs by bot"
+          git push origin main
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./docs
+      #     force_orphan: true
