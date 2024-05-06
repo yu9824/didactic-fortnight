@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0  # fetch all commits
           fetch-tags: true
       - uses: actions/setup-python@v5
       - name: Install dependencies
