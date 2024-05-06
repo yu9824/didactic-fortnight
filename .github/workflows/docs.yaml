@@ -2,9 +2,9 @@ name: docs
 
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#       - 'main'
+  push:
+    branches:
+      - 'main'
 
 permissions:
   contents: write
@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0  # fetch all commits
           fetch-tags: true
       - uses: actions/setup-python@v5
