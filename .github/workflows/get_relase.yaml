@@ -10,8 +10,13 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: joutvhu/get-release@v1
+      - name: get release
+        id: get_release
+        uses: joutvhu/get-release@v1
         with:
           pattern: '^v.*'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: echo
+        run: |
+          echo ${{ steps.get_release.outputs.tag_name }}
