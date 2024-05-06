@@ -24,10 +24,10 @@ jobs:
           pip install -e .[docs]
       - name: Add path
         run: |
-          echo "$(pwd)" >> $GITHUB_PATH && echo $GITHUB_PATH
+          echo "$(pwd)" >> $GITHUB_PATH && ls
       - name: Sphinx build
         run: |
-          sphinx-multiversion -M html ./docs_src ./docs
+          sphinx-multiversion ./docs_src ./docs
       - name: Commit docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
