@@ -1,0 +1,17 @@
+name: docs
+
+on:
+  workflow_dispatch:
+#   push:
+#     branches:
+#       - 'main'
+
+jobs:
+    build-linux:
+    steps:
+    - uses: joutvhu/get-release@v1
+        with:
+            # Tag name start with `v`
+            pattern: '^v.*'
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
