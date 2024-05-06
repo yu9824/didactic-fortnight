@@ -30,7 +30,7 @@ jobs:
           python3 -c "import template; print(template.__version__)"
       - name: Sphinx build
         run: |
-          sphinx-multiversion ./docs_src ./docs
+          python3 -m sphinx_multiversion ./docs_src ./docs
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
