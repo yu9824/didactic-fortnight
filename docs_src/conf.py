@@ -42,5 +42,6 @@ source_parsers = {
 }
 
 # for multi-version
-smv_tag_whitelist = r"^v\d+\.\d+.\d+$"  # Include tags like "v2.1.1"
-smv_branch_whitelist = r"^(main).*$"  # Include 'main' branch only
+# smv_tag_whitelist = r"^v\d+\.\d+.\d+$"  # Include tags like "v2.1.1"
+smv_tag_whitelist = rf"^v{__version__}$"  # Include tags like "v2.1.1"
+smv_branch_whitelist = r"^main$"  # Include 'main' branch only
