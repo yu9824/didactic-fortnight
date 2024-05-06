@@ -6,7 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
+
 from template import __author__, __version__
+
+dirpath_current = os.path.abspath(os.path.dirname(__file__))
 
 project = "template"
 copyright = "2024, yu9824"
@@ -25,7 +29,7 @@ extensions = [
     "sphinx_multiversion",  # 複数バージョンの共存
 ]
 
-templates_path = ["_templates"]
+templates_path = [os.path.join(dirpath_current, "_templates")]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
@@ -33,7 +37,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-html_static_path = ["_static"]
+html_static_path = [os.path.join(dirpath_current, "_static")]
 
 # for markdown documentations
 source_suffix = [".rst", ".md"]
