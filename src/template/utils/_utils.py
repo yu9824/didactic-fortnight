@@ -10,7 +10,7 @@ PACKAGE_NAMES = {_module.name for _module in pkgutil.iter_modules()}
 
 
 def is_installed(package_name: str) -> bool:
-    """Check if the package is installed. v0.0.8 only??
+    """Check if the package is installed.
 
     Parameters
     ----------
