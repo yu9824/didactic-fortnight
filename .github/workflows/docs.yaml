@@ -2,9 +2,9 @@ name: docs
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'main'
+  push:
+    branches:
+      - 'main'
 
 permissions:
   contents: write
@@ -21,25 +21,25 @@ jobs:
       - uses: actions/setup-python@v5
       - name: Install dependencies
         run: |
-          pip install -e .[docs]
+          pip install -e .[docs] && pip install git+https://github.com/yu9824/sphinx-multiversion.git@v0.3.0dev0
       - name: Add path
         run: |
           echo "$(pwd)/src" >> $GITHUB_PATH && ls
       - name: Sphinx build
         run: |
           sphinx-multiversion ./docs_src ./docs
-      - name: Commit docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add docs
-          git commit -m "build docs by bot"
-          git push origin main
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v4
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./docs
-      #     force_orphan: true
+      # - name: Commit docs
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add docs
+      #     git commit -m "build docs by bot"
+      #     git push origin main
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          force_orphan: true
